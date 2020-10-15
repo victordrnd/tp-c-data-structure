@@ -90,3 +90,8 @@ run: all
 	./$(OUTPUT)/$(MAIN)
 	@echo Executing 'run: all' complete!
 
+test :
+	make all
+	./$(OUTPUT)/$(MAIN) -t
+
+	

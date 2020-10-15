@@ -3,6 +3,7 @@
 #include <errno.h>
 #include <string.h>
 #include <assert.h>
+#include <string.h>
 
 #include "./utils/stack/stack.h"
 #include "./utils/queue/queue.h"
@@ -100,20 +101,34 @@ void test_heap()
 	assert(h.data[3] == 30);
 }
 
+void execute_test()
+{
+	test_stack();
+	printf("Stack tests have been executed successfully\n");
+	test_queue();
+	printf("Queue tests have been executed successfully\n");
+	test_arraylist();
+	printf("Array list tests have been executed successfully\n");
+	test_heap();
+	printf("Heap tests have been executed successfully\n");
+	printf("...\n");
+	printf("Tests have been executed successfully\n");
+}
+
 int main(int argc, char *argv[])
 {
-	if (strcmp(argv[1],'--test'))
+	int opt;
+	while ((opt = getopt(argc, argv, "t")) != -1)
 	{
-		test_stack();
-		printf("Stack tests have been executed successfully\n");
-		test_queue();
-		printf("Queue tests have been executed successfully\n");
-		test_arraylist();
-		printf("Array list tests have been executed successfully\n");
-		test_heap();
-		printf("Heap tests have been executed successfully\n");
-		printf("...\n");
-		printf("Tests have been executed successfully\n");
+		switch (opt)
+		{
+		case 't':
+			execute_test();
+			break;
+		case '?':
+			printf("unknown option: % c\n", opt);
+			break;
+		}
 	}
 
 	return (0);
