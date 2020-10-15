@@ -37,13 +37,7 @@ void enqueue(Queue *q, float value)
  */
 float dequeue(Queue *q)
 {
-    float val = q->data[0];
-    for (int i = 0; i < q->index; i++)
-    {
-        q->data[i] = q->data[i + 1];
-    }
-    q->index--;
-    return val;
+    return q->data[q->index--];
 }
 
 
