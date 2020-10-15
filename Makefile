@@ -94,4 +94,5 @@ test :
 	make all
 	./$(OUTPUT)/$(MAIN) -t
 
-	
+documentation :
+	doxygen
