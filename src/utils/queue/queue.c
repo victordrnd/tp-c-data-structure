@@ -1,34 +1,81 @@
 #include "queue.h"
 
-void init_queue(Queue *q){
+/**
+ * @brief  Init queue
+ * @param  q : queue to be initialized 
+ * @retval None
+ */
+void init_queue(Queue *q)
+{
     q->index = 0;
 }
 
-void enqueue(Queue *q, float value){
-    q->data[q->index] = value;
+
+
+/**
+ * @brief Add value to the queue  
+ * @param  q :  
+ * @param  value: 
+ * @retval None
+ */
+void enqueue(Queue *q, float value)
+{
+    for (int i = q->index; i >= 0; i--)
+    {
+        q->data[i + 1] = q->data[i];
+    }
+    q->data[0] = value;
     q->index++;
 }
 
-float dequeue(Queue *q){
+
+
+/**
+ * @brief Return the first in queue   
+ * @param  q : Concerned Queue
+ * @retval 
+ */
+float dequeue(Queue *q)
+{
     float val = q->data[0];
-    for(int i = 0; i < q->index; i++){
-        q->data[i] = q->data[i+1];
+    for (int i = 0; i < q->index; i++)
+    {
+        q->data[i] = q->data[i + 1];
     }
     q->index--;
     return val;
 }
 
-bool is_queue_empty(Queue *q){
+
+
+/**
+ * @brief  Check if queue is empty
+ * @param  q : queue to be checked 
+ * @retval 
+ */
+bool is_queue_empty(Queue *q)
+{
     return q->index == 0;
 }
 
 
-float front(Queue *q){
-    return q->data[0];
+/**
+ * @brief return first in queue  
+ * @param  q : Queue
+ * @retval 
+ */
+float front(Queue *q)
+{
+    return q->data[q->index-1];
 }
 
 
-void clearq(Queue *q){
+/**
+ * @brief  Clear queue
+ * @param  q Queue to be cleared
+ * @retval None
+ */
+void clearq(Queue *q)
+{
     init_queue(q);
 }
-
