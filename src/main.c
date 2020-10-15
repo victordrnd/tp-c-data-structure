@@ -10,7 +10,7 @@
 #include "./utils/array_list/array_list.h"
 #include "./utils/heap/heap.h"
 
-float test_stack()
+void test_stack()
 {
 	Stack s;
 	init_stack(&s);
